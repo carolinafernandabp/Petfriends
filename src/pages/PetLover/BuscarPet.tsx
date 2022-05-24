@@ -148,12 +148,10 @@ export const BuscarPet: React.FC = ()  => {
                             <img alt= ""  src= {pet.avatarURL}></img>
                             <IonCardTitle>{pet.nombre}</IonCardTitle>
                             <IonCardSubtitle>
-                                <h3>Hola! Vivo en la región de {pet.region}.
-                                    Tengo {pet.edad},
-                                    mi raza es {pet.raza}.
-                                    Soy {pet.tamanio}, mi salud se encuentra {pet.salud}.
-                                    Soy una mascota {pet.caracter}.
-                                    Estoy buscando a nuevo dueño! </h3> 
+                                <h3>¡Hola! Soy {pet.nombre}, tengo {pet.edad} de edad,
+                                    soy {pet.raza}, mi tamaño es {pet.tamanio}.
+                                    Tengo una personalidad muy especial, me caracterizo por ser {pet.caracter}.
+                                    Estoy en busca de un mejor amig@! </h3> 
                             </IonCardSubtitle> 
                         
                        <IonButton routerLink="./Adoptar" color="success" expand="block" size="small">

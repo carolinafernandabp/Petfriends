@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader,  IonCardSubtitle,  IonCardTitle, IonContent, IonHeader,
-     IonIcon, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonSearchbar, IonSelect, IonSelectOption, IonTitle, IonToast, IonToolbar, useIonViewWillEnter } from "@ionic/react";
-     import { addOutline, calendarClearSharp, calendarNumberSharp, camera, happySharp, medkitSharp, pawSharp, pencil, trashBinOutline } from "ionicons/icons";
+     IonIcon, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonPage,  IonSelect, IonSelectOption, IonTitle, IonToast, IonToolbar, useIonViewWillEnter } from "@ionic/react";
+     import { addOutline, calendarClearSharp, happySharp, medkitSharp, pawSharp, pencil, trashBinOutline } from "ionicons/icons";
 import { firebaseConfig } from "../../firebaseConfig";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -10,10 +10,8 @@ import 'firebase/compat/firestore';
 import { pet } from '../../models/models';
 
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { isEmpty } from "@firebase/util";
-import { registerVersion } from "firebase/app";
-import { text } from "express";
 
+import { Formik } from 'formik';
 
  //inicializar firebase
  if (!firebase.apps.length) {
@@ -153,10 +151,12 @@ export const Pet: React.FC = ()  => {
         //guardar imagen como url
     }
 
+
      
     return(
+
+        
         <IonPage>
-            
             <IonToast
                 isOpen={mensaje}
                 onDidDismiss={() => setMensaje(false)}
@@ -177,15 +177,14 @@ export const Pet: React.FC = ()  => {
                     <IonMenuButton></IonMenuButton>
                 </IonButtons>
                 <IonTitle color="dark">Mascotas</IonTitle>
-                <script src="validar.js"></script>
+  
             </IonToolbar>
-
-       <IonCard>
-         
+       <IonCard  >
            <IonItem>
             <IonLabel position="stacked">Nombre</IonLabel>
             <IonInput value={nombre} 
             name="nombre"
+            id="nombre"
             type="text"
             required
             onIonChange={e => setNombre(e.detail.value!)}> </IonInput>
@@ -262,31 +261,16 @@ export const Pet: React.FC = ()  => {
           <IonItem>
           <IonLabel position="stacked">Comuna</IonLabel>
           <IonSelect  value={comuna} onIonChange={e => setRegion(e.detail.value)}>
-              <IonSelectOption value="1">Arica y Parinacota</IonSelectOption>
-              <IonSelectOption value="2">Tarapacá</IonSelectOption>
-              <IonSelectOption value="3">Antofagasta</IonSelectOption>
-              <IonSelectOption value="4">Atacama</IonSelectOption>
-              <IonSelectOption value="5">Coquimbo</IonSelectOption>
-              <IonSelectOption value="6">Valparaíso</IonSelectOption>
-              <IonSelectOption value="7">Metropolitana de Santiago</IonSelectOption>
-              <IonSelectOption value="8">Libertador General Bernardo O'Higgins</IonSelectOption>
-              <IonSelectOption value="9">Maule</IonSelectOption>
-              <IonSelectOption value="10">Ñuble</IonSelectOption>
-              <IonSelectOption value="11">Biobío</IonSelectOption>
-              <IonSelectOption value="12">Araucanía</IonSelectOption>
-              <IonSelectOption value="13">Los Ríos</IonSelectOption>
-              <IonSelectOption value="14">Los Lagos</IonSelectOption>
-              <IonSelectOption value="15">Aysén del G. Carlos Ibañez del Campo</IonSelectOption>
-              <IonSelectOption value="16">Magallanes y de la Antártica Chilena</IonSelectOption>
+              <IonSelectOption value="1">Comuna1</IonSelectOption> 
             </IonSelect>
           </IonItem>
-        
+
           <IonItem>
-            <IonLabel position="stacked">Avatar</IonLabel>
+          <IonLabel position="stacked">Avatar</IonLabel>
             <IonButton onClick={takePicture} expand="block" color="light"> Tomar fotografía o seleccionar una </IonButton>
           </IonItem>
     
-          <IonButton color="success" expand="block" type="submit"
+          <IonButton color="success" expand="block" type="submit" 
             onClick={() => crear() }>
             <IonIcon icon={addOutline}>
             </IonIcon>{bandera?'Pet':'Editar'}</IonButton>
